@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+	<head>
+		<title>tomocode</title>
+		<meta name="viewport" content="width=device-width, user-scalable=no">
+		<script src='https://cdn.firebase.com/js/client/2.4.0/firebase.js'></script>
+		<style>
+			body {
+				text-align: center;	
+			}
+			textarea {
+				max-width: 600px;
+				max-height: 300px;
+				width: 90%;
+				height: 30vh;
+				font-size: 20px;
+			}
+			input {
+				font-size: 20px;
+			}
+			div {
+				max-width: 600px;
+				width: 90%;
+				margin-right: auto;
+				margin-left: auto;
+				margin-bottom: 10px;
+			}
+		</style>
+	</head>
+	<body>
+		<form action="javascript:send()">
+			<h1>tomocode post</h1>
+			<div style="text-align: right;">
+				<input type="submit"><br>
+			</div>
+			<textarea id="postContent" placeholder="Enter my stuff here!"></textarea>
+		</form>
+		<script>
+			var datavase = new Firebase('https://loghorizon-8068c.firebaseio.com');
+			function send() {
+				var d = new Date();
+				var date = d.getDate();
+				var months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+				var month = months[d.getMonth()];
+				var hour = d.getHours();
+				var min = d.getMinutes();
+				var post = "<p><i>"+month+" "+date+" "+" <b>"+hour+":"+min+"</b></i> "+document.getElementById("postContent").value;
+				datavase.push({msg:post});
+			}
+		</script>
+	</body>
+</html>
