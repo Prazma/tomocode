@@ -1,0 +1,34 @@
+<!doctype html>
+<html>
+	<head>
+		<title>tomocode blog</title>
+		<meta name="viewport" content="width=device-width, user-scalable=no">
+		<script src='https://cdn.firebase.com/js/client/2.4.0/firebase.js'></script>
+		<style>
+			div {
+				width: 90%;
+				margin-right: auto;
+				margin-left: auto;
+			}
+		</style>
+	</head>
+	<body>
+		<div>
+			<h1>tomocode blog</h1>
+		</div>
+		<div id="posts">
+		</div>
+		<script>
+			var datavase = new Firebase('https://loghorizon-8068c.firebaseio.com');
+			var startListening = function() {
+				datavase.on('child_added', function(snapshot) {
+					var mig = snapshot.val();
+					var msg = mig.msg;
+					var content = document.getElementById("posts").innerHTML;
+					document.getElementById("posts").innerHTML = msg + content;
+				});
+			}
+			startListening();
+		</script>
+	</body>
+</html>
