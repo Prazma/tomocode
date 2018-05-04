@@ -46,6 +46,7 @@
 				var min = d.getMinutes();
 				var post = "<p><i>"+month+" "+date+" "+" <b>"+hour+":"+min+"</b></i> "+document.getElementById("postContent").value;
 				datavase.push({msg:post});
+				document.getElementById("postContent").value = "";
 			}
 		</script>
 	</body>
